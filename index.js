@@ -81,9 +81,15 @@ async function startBot() {
 
   sock.ev.on('messages.upsert', async ({ messages }) => {
     const msg = messages[0];
-    if (!msg?.message || msg.key.fromMe) return;
+    if (!msg?.message) return;
 
     const from = msg.key.remoteJid;
+
+    // Izinin pesan "fromMe" KHUSUS kalau itu chat ke diri sendiri (buat testing),
+    // tapi tetep abaikan fromMe di chat/grup lain biar gak infinite loop balas2an.
+    const isSelfChat = from === sock.user?.id?.split(':')[0] + '@s.whatsapp.net';
+    if (msg.key.fromMe && !isSelfChat) return;
+
     const m = msg.message;
 
     // Ambil teks: bisa dari caption gambar, atau pesan teks biasa
