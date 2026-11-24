@@ -1,5 +1,5 @@
 // index.js
-// Bot WhatsApp sederhana: kirim gambar + caption ".sticker" (atau "s") -> dibales stiker.
+// Bot WhatsApp sederhana: kiim gambar + caption ".sticker" (atau "s") -> dibales stiker.
 // Dipakai dengan @whiskeysockets/baileys (library open-source WA Web multi-device).
 
 const {
